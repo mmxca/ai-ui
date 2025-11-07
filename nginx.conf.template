@@ -1,0 +1,27 @@
+server {
+    listen ${PORT};
+    server_name _;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Inject environment variables into JavaScript
+    location = /env-config.js {
+        add_header Content-Type application/javascript;
+        return 200 'window.ENV_OPENAI_URL="${OPENAI_URL}";window.ENV_OPENAI_TOKEN="${OPENAI_TOKEN}";window.ENV_OPENAI_MODEL="${OPENAI_MODEL}";';
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Gzip compression
+    gzip on;
+    gzip_vary on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+}
