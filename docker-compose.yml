@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ai-ui:
+    image: ghcr.io/mmxca/ai-ui:latest
+    ports:
+      - "8080:8080"
+    environment:
+      # Replace with your Azure OpenAI endpoint URL
+      # Format: https://{resource}.openai.azure.com/openai/deployments/{deployment}/chat/completions?api-version=2024-02-15-preview
+      - OPENAI_URL=https://your-instance.openai.azure.com/openai/deployments/your-deployment/chat/completions?api-version=2024-02-15-preview
+      # Replace with your Azure OpenAI API key
+      - OPENAI_TOKEN=your-api-key-here
+      # The model to use (optional, defaults to gpt-3.5-turbo)
+      - OPENAI_MODEL=gpt-3.5-turbo
+      # Port to listen on (optional, defaults to 8080)
+      - PORT=8080
+    restart: unless-stopped
