@@ -14,6 +14,12 @@ A simple, web-based ChatGPT-style frontend for Azure OpenAI services.
 
 The Docker image is automatically built and published to GitHub Container Registry as `ghcr.io/mmxca/ai-ui:latest`.
 
+**Multi-Architecture Support**: The image is built for multiple architectures:
+- `linux/amd64` (x86_64)
+- `linux/arm64` (ARM64/aarch64)
+
+Docker will automatically pull the correct image for your system architecture.
+
 ## Configuration
 
 The application is configured using environment variables:
