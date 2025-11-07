@@ -81,6 +81,19 @@ Once running, open your browser and navigate to:
 http://localhost:8080
 ```
 
+## Security Considerations
+
+**Important**: This is a client-side only application that exposes the Azure OpenAI API key in the browser. This is suitable for:
+- Personal use or trusted environments
+- Development and testing
+- Internal/private networks behind authentication
+
+For production use with untrusted users, consider implementing a backend proxy that:
+- Keeps API credentials server-side
+- Adds authentication/authorization
+- Implements rate limiting and usage controls
+- Protects against credential exposure
+
 ## Azure OpenAI Setup
 
 1. Create an Azure OpenAI resource in the Azure Portal
